@@ -15,10 +15,14 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView textViewTimer;
     private TextView textViewExample;
+    private Button btn1;
+    private Button btn2;
+    private Button btn3;
+    private Button btn4;
 
-    private final int maxNunInExample = 10;
-    private final int minNunInExample = 1;
-    private double rightAnswer;
+    private int maxNunInExample = 10;
+    private int minNunInExample = 1;
+    private int rightAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +30,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         textViewTimer = findViewById(R.id.textViewTimer);
         textViewExample = findViewById(R.id.textViewExample);
-        textViewExample.setText(createRandomExample(maxNunInExample, minNunInExample));
+        btn1 = findViewById(R.id.btn1);
+        btn2 = findViewById(R.id.btn2);
+        btn3 = findViewById(R.id.btn3);
+        btn4 = findViewById(R.id.btn4);
+
+        createRandomExample();
         CountDownTimer timer = new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long l) {
@@ -42,10 +51,25 @@ public class MainActivity extends AppCompatActivity {
         timer.start();
     }
 
-    private String createRandomExample(int max, int min) {
-        int a = (int) (Math.random() * ((max - min) + 1)) + min;
-        int b = (int) (Math.random() * ((max - min) + 1)) + min;
+    private void createRandomExample() {
+        int a = (int) (Math.random() * ((maxNunInExample - minNunInExample) + 1)) + minNunInExample;
+        int b = (int) (Math.random() * ((maxNunInExample - minNunInExample) + 1)) + minNunInExample;
         rightAnswer = a * b;
-        return a + " * " + b;
+        textViewExample.setText(a + " * " + b);
+        int random = (int) (Math.random() * ((4 - 1) + 1)) + 1;
+        switch (random) {
+            case 1 :
+                btn1.setText(String.valueOf(rightAnswer));
+                break;
+            case 2 :
+                btn2.setText(String.valueOf(rightAnswer));
+                break;
+            case 3 :
+                btn3.setText(String.valueOf(rightAnswer));
+                break;
+            case 4 :
+                btn4.setText(String.valueOf(rightAnswer));
+                break;
+        }
     }
 }
