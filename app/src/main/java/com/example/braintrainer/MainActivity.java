@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         textViewTimer = findViewById(R.id.textViewTimer);
         textViewExample = findViewById(R.id.textViewExample);
         btn1 = findViewById(R.id.btn1);
@@ -35,7 +34,15 @@ public class MainActivity extends AppCompatActivity {
         btn3 = findViewById(R.id.btn3);
         btn4 = findViewById(R.id.btn4);
 
+
+        BtnOnClickListener listener = new BtnOnClickListener();
+        btn1.setOnClickListener(listener);
+        btn2.setOnClickListener(listener);
+        btn3.setOnClickListener(listener);
+        btn4.setOnClickListener(listener);
         createRandomExample();
+
+
         CountDownTimer timer = new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long l) {
